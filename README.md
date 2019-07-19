@@ -24,7 +24,7 @@ Create a REST api service to store and read data from H2 database.
 * seeddata.java is a sample script that can be modified to populate the database 
 * note that all new todos default to completed = false;
 
-The table layouts are as follows:
+### The table layouts are as follows:
 
 * All tables should have audit fields / columns - createby createddate modifiedby modifieddate
 
@@ -49,8 +49,11 @@ The table layouts are as follows:
   * userid foreign key to user
   
 
-Expose the following end points
+### Expose the following end points:
 
+* LOGINS for two users:
+  * user: barnbarn, pass: ILuvM4th! (role: user)
+  * user: admin, pass: password (role: admin)
 * [x] GET /users/mine - return the user and todo based off of the authenticated user. You can only look up your own.
 * [x] POST /users - adds a user. Can only be done by an admin.
   * test data:
