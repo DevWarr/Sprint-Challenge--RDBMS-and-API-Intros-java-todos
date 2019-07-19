@@ -24,7 +24,7 @@ Create a REST api service to store and read data from H2 database.
 * seeddata.java is a sample script that can be modified to populate the database 
 * note that all new todos default to completed = false;
 
-The table layouts are as follows:
+### The table layouts are as follows:
 
 * All tables should have audit fields / columns - createby createddate modifiedby modifieddate
 
@@ -49,19 +49,49 @@ The table layouts are as follows:
   * userid foreign key to user
   
 
-Expose the following end points
+### Expose the following end points:
 
-* GET /users/mine - return the user and todo based off of the authenticated user. You can only look up your own.
-* POST /users - adds a user. Can only be done by an admin.
-* POST /users/todo/{userid} - adds a todo to the assigned user. Can be done by any user.
-* PUT /todos/todoid/{todoid} - updates a todo based on todoid. Can be done by any user.
-* DELETE /users/userid/{userid} - Deletes a user based off of their userid and deletes all their associated todos. Can only be done by an admin.
+* LOGINS for two users:
+  * user: barnbarn, pass: ILuvM4th! (role: user)
+  * user: admin, pass: password (role: admin)
+* [x] GET /users/mine - return the user and todo based off of the authenticated user. You can only look up your own.
+* [x] POST /users - adds a user. Can only be done by an admin.
+  * test data:
+  ```
+  {
+    "username": "newguy",
+      "userRoles": [
+        {
+          "role": {
+            "roleid": 2,
+            "name": "user"
+          }
+        }
+      ],
+      "todos": []
+	}
+	```
+* [x] DELETE /users/userid/{userid} - Deletes a user based off of their userid and deletes all their associated todos. Can only be done by an admin.
+* [x] POST /todos/todo/{userid} - adds a todo to the assigned user. Can be done by any user.
+  * test data:
+  ```
+  {
+	"description": "Clean the ENTIRE HOUSE you fool"
+  }
+  ```
+* [x] PUT /todos/todoid/{todoid} - updates a todo based on todoid. Can be done by any user.
+  * test data:
+  ```
+  {
+	"completed": "true"
+  }
+  ```
 
 * hint - think about taking the project https://github.com/LambdaSchool/java-oauth2.git and modifying it to fit this application
 
 ## Stretch goals
 
 * Update the end points below:
-  * POST /users/todo/{userid} - adds a todo to the assigned user. Can only be done by the authenticated user. A user can only modify their own data.
-  * PUT /todos/todoid/{todoid} - updates a todo based on todoid. Can only be done by the authenticated user. A user can only modify their own data.
+  * [x] POST /users/todo/{userid} - adds a todo to the assigned user. Can only be done by the authenticated user. A user can only modify their own data.
+  * [x] PUT /todos/todoid/{todoid} - updates a todo based on todoid. Can only be done by the authenticated user. A user can only modify their own data.
 * add appropriate end points to manage users giving only admin access to these.
