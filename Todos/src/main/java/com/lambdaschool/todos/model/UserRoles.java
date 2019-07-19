@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "userroles")
-public class UserRoles implements Serializable
+public class UserRoles  extends Auditable implements Serializable
 {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
