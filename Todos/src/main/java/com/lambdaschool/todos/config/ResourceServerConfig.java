@@ -37,8 +37,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                 .antMatchers("/users/**").authenticated()
                 .antMatchers("/roles/**").hasAnyRole("ADMIN")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/zoos/**").hasAnyRole("ADMIN", "ZOODATA", "MGR")
-                .antMatchers("/animals/**").hasAnyRole("ADMIN", "ANIMALDATA", "MGR")
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
         http.csrf().disable();

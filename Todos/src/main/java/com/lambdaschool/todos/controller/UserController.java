@@ -25,7 +25,7 @@ public class UserController
     private UserService userService;
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/viewall", produces = {"application/json"})
+    @GetMapping(value = "/view", produces = {"application/json"})
     public ResponseEntity<?> listAllUsers()
     {
         List<User> myUsers = userService.findAll();
@@ -33,16 +33,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/view/{userId}", produces = {"application/json"})
-    public ResponseEntity<?> getUser(@PathVariable Long userId)
-    {
-        User u = userService.findUserById(userId);
-        return new ResponseEntity<>(u, HttpStatus.OK);
-    }
-
-
-    @GetMapping(value = "/getusername", produces = {"application/json"})
+    @GetMapping(value = "/mine", produces = {"application/json"})
     @ResponseBody
     public ResponseEntity<?> getCurrentUserName(Authentication authentication)
     {
@@ -52,7 +43,7 @@ public class UserController
 
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/add", consumes = {"application/json"}, produces = {"application/json"})
+    @PostMapping(value = "", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<?> addNewUser(@Valid @RequestBody User newuser) throws URISyntaxException
     {
         newuser =  userService.save(newuser);
@@ -61,7 +52,7 @@ public class UserController
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
-                .path("/{userid}")
+                .path("/view/{userid}")
                 .buildAndExpand(newuser.getUserid())
                 .toUri();
         responseHeaders.setLocation(newUserURI);
@@ -79,7 +70,7 @@ public class UserController
 
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/userid/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable long id)
     {
         userService.delete(id);
