@@ -8,5 +8,9 @@ public interface ToDoService
 {
     List<Todo> getAllTodos();
 
-    Todo save(Todo todo);
+    Todo getTodoById(long id);
+
+    Todo save(Todo todo, String name);
+
+    Todo update(Todo todo, long id);
 }

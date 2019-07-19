@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserDetailsService, UserService
 
     @Transactional
     @Override
-    public User update(User user, long id)
+    public User update(User user, long id) throws EntityNotFoundException
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userrepos.findByUsername(authentication.getName());

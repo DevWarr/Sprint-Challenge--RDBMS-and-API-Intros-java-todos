@@ -32,6 +32,14 @@ public class UserController
         return new ResponseEntity<>(myUsers, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping(value = "/view/{id}", produces = {"application/json"})
+    public ResponseEntity<?> getUserById(@PathVariable long id)
+    {
+        User rtnUser = userService.findUserById(id);
+        return new ResponseEntity<>(rtnUser, HttpStatus.OK);
+    }
+
 
     @GetMapping(value = "/mine", produces = {"application/json"})
     @ResponseBody

@@ -16,7 +16,7 @@ public class Todo extends Auditable
     @Column(nullable = false)
     private String description;
 
-    private Date dateStarted;
+    private Date dateStarted = new Date();
     private boolean completed = false;
 
     @ManyToOne
