@@ -16,7 +16,7 @@ public class Role extends Auditable
 
     @Column(nullable = false,
             unique = true)
-    String name;
+    private String name;
 
     @OneToMany(mappedBy = "role",
                cascade = CascadeType.ALL)
