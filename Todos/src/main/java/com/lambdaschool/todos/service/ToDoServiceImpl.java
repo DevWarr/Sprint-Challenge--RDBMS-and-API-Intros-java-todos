@@ -51,7 +51,7 @@ public class ToDoServiceImpl implements ToDoService
 
         Todo newTodo = new Todo();
         newTodo.setDescription(todo.getDescription());
-        newTodo.setUser(todo.getUser());
+        newTodo.setUser(currentUser);
 
 
         return todoRepo.save(newTodo);
